@@ -32,5 +32,19 @@ namespace Full_GRASP_And_SOLID.Library
         {
             this.steps.Remove(step);
         }
+        
+        public double productCost{get; set; }
+        public double equipmentCost{get; set; }
+        public double totalCost{get; set; }
+        public double GetProductionCost()
+        {
+            foreach (Step step in steps)
+            {
+                productCost = step.Input.UnitCost * step.Quantity + productCost;
+                equipmentCost = step.Quantity * step.Time + equipmentCost;
+            }
+            totalCost = productCost + equipmentCost;
+            return totalCost;
+        }
     }
 }
